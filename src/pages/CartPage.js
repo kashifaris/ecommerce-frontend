@@ -1,7 +1,11 @@
 import { Cart } from "../features/cart/Cart";
 
 function CartPage() {
-    return ( <Cart> </Cart> );
+    return ( 
+    <div>
+        <Cart></Cart>
+    </div>
+     );
 }
 
 export default CartPage;
