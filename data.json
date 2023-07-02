@@ -2342,27 +2342,18 @@
         {
           "name": "Kashif",
           "email": "kgnkashif8@gmail.com",
-          "phone": "Apna Aashiayana Near CRP Line Masjid",
-          "street": "Behind MY CRP Line",
+          "phone": "88645821651",
           "city": "Indore",
           "state": "Madhya Pradesh",
-          "pincode": "452001"
+          "pincode": "452001",
+          "street": "Behind MY CRP Line"
         },
         {
-          "name": "Kashif",
-          "email": "kgnkashif8@gmail.com",
-          "phone": "52143543",
-          "street": "Apna Aashiayana Near CRP Line Masjid Behind MY CRP Line",
-          "city": "Indore",
-          "state": "Madhya Pradesh",
-          "pincode": "452001"
-        },
-        {
-          "name": "Kashif",
-          "email": "kgnkashif8@gmail.com",
-          "phone": "Apna Aashiayana Near CRP Line Masjid",
-          "street": "Behind MY CRP Line",
-          "city": "Indore",
+          "name": "Jonathan",
+          "email": "mokashn21@gmail.com",
+          "phone": "40005021",
+          "street": "400 loss gross",
+          "city": "la",
           "state": "Madhya Pradesh",
           "pincode": "452001"
         }
@@ -2370,7 +2361,29 @@
       "id": 1
     }
   ],
-  "cart": [],
+  "cart": [
+    {
+      "title": "Wiley X Night Vision Yellow Glasses",
+      "description": "Wiley X Night Vision Yellow Glasses for Riders - Night Vision Anti Fog Driving Glasses - Free Night Glass Cover - Shield Eyes From Dust and Virus- For Night Sport Matches",
+      "price": 30,
+      "discountPercentage": 6.33,
+      "rating": 4.97,
+      "stock": 115,
+      "brand": "mastar watch",
+      "category": "sunglasses",
+      "thumbnail": "https://i.dummyjson.com/data/products/83/thumbnail.jpg",
+      "images": [
+        "https://i.dummyjson.com/data/products/83/1.jpg",
+        "https://i.dummyjson.com/data/products/83/2.jpg",
+        "https://i.dummyjson.com/data/products/83/3.jpg",
+        "https://i.dummyjson.com/data/products/83/4.jpg",
+        "https://i.dummyjson.com/data/products/83/thumbnail.jpg"
+      ],
+      "quantity": 1,
+      "user": 1,
+      "id": 1
+    }
+  ],
   "orders": [
     {
       "items": [

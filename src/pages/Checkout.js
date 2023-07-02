@@ -13,6 +13,7 @@ import {
   updateUserAsync,
 } from "../features/auth/authSlice";
 import { createOrderAsync,selectCurrentOrder } from "../features/order/OrderSlice";
+import { selectUserInfo } from "../features/user/userSlice";
 
 
 function Checkout() {
@@ -49,7 +50,7 @@ function Checkout() {
     formState: { errors },
   } = useForm();
 
-  const user = useSelector(selectLoggedInUser);
+  const user = useSelector(selectUserInfo);
   const currentOrder= useSelector(selectCurrentOrder);
 
   const [selectedAddress, setSelectedAddress] = useState(null);
@@ -117,7 +118,7 @@ function Checkout() {
                       <button
                         onClick={(e) => handleAddBtn(e)}
                         type="submit"
-                        className="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                        className="rounded-md bg-green-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                       >
                         Add New Address
                       </button>

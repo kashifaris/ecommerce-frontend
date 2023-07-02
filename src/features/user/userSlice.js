@@ -1,9 +1,10 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { fetchLoggedInUserOrders,updateUser } from './userAPI';
+import { fetchLoggedInUserOrders,updateUser,fetchLoggedInUser } from './userAPI';
 
 const initialState = {
   userOrders: [],
   status: 'idle',
+  userInfo: null
 };
 
 
@@ -12,6 +13,14 @@ export const fetchLoggedInUserOrdersAsync = createAsyncThunk(
   async (amount) => {
     const response = await fetchLoggedInUserOrders(amount);
 
+    return response.data;
+  }
+);
+
+export const fetchLoggedInUserAsync = createAsyncThunk(
+  'user/fetchLoggedInUser',
+  async (userId) => {
+    const response = await fetchLoggedInUser(userId);
     return response.data;
   }
 );
@@ -45,12 +54,19 @@ export const counterSlice = createSlice({
         state.status = 'idle';
         state.userOrders = action.payload;
       })
+      .addCase(fetchLoggedInUserAsync.pending, (state) => {
+        state.status = 'loading';
+      })
+      .addCase(fetchLoggedInUserAsync.fulfilled, (state, action) => {
+        state.status = 'idle';
+        state.userInfo = action.payload;
+      })
       .addCase(updateUserAsync.pending, (state) => {
         state.status = 'loading';
       })
       .addCase(updateUserAsync.fulfilled, (state, action) => {
         state.status = 'idle';
-        state.userOrders = action.payload;
+        state.userInfo = action.payload;
       });
   },
 });
@@ -58,6 +74,8 @@ export const counterSlice = createSlice({
 export const { increment} = counterSlice.actions;
 
 export const selectUserOrders = (state) => state.user.userOrders;
+export const selectUserInfo = (state) => state.user.userInfo;
+
 
 
 
