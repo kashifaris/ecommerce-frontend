@@ -3,7 +3,7 @@ import {
   selectCount,
 } from './OrderSlice';
 
-export function Counter() {
+export function Order() {
   const count = useSelector(selectCount);
   const dispatch = useDispatch();
 

@@ -52,6 +52,17 @@ export function UserProfile() {
     <div>
       <div>
         <div className="mx-auto mt-12 bg-white max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="border-t border-gray-200 px-4 py-6 sm:px-6">
+            <h1 className="text-4xl my-5 font-bold tracking-tight text-gray-900">
+              Name: {"new user"}
+            </h1>
+            <h3 className="text-xl my-5 font-bold tracking-tight text-red-900">
+              email : {user.email}
+            </h3> 
+            {user.role=='admin' && <h3 className="text-xl my-5 font-bold tracking-tight text-red-900">
+              Role : {user.role}
+            </h3>}
+          </div>
         <button
             onClick={e=>{setShowAddAddressForm(true);setSelectedEditIndex(-1)}}
             type="submit"
@@ -240,14 +251,7 @@ export function UserProfile() {
                 </div>
               </div>
             </form> : null}
-          <div className="border-t border-gray-200 px-4 py-6 sm:px-6">
-            <h1 className="text-4xl my-5 font-bold tracking-tight text-gray-900">
-              Name: {"new user"}
-            </h1>
-            <h3 className="text-xl my-5 font-bold tracking-tight text-red-900">
-              email : {user.email}
-            </h3>
-          </div>
+
           <div>
            { selectedEditIndex>-1 ?<form
               className="bg-white px-5 mt-12"

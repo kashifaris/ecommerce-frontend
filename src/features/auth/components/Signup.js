@@ -12,12 +12,12 @@ export function SignUp() {
     formState: { errors },
   } = useForm();
   console.log(errors);
-  const user= useSelector(selectLoggedInUser)
-console.log(user);
+  const user = useSelector(selectLoggedInUser);
+  console.log(user);
   return (
     <div>
       <div>
-      {user && <Navigate to='/'></Navigate>}
+        {user && <Navigate to="/"></Navigate>}
         <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
           <div className="sm:mx-auto sm:w-full sm:max-w-sm">
             <img
@@ -35,7 +35,14 @@ console.log(user);
               noValidate
               className="space-y-6"
               onSubmit={handleSubmit((data) => {
-                dispatch(CreateUserAsync({email:data.email,password:data.password,addresses:[]}))
+                dispatch(
+                  CreateUserAsync({
+                    email: data.email,
+                    password: data.password,
+                    addresses: [],
+                    role:'user'
+                  })
+                );
                 console.log(data);
               })}
             >
@@ -77,8 +84,8 @@ console.log(user);
                 <div className="mt-2">
                   <input
                     id="password"
-                    {...register('password', {
-                      required: 'password is required',
+                    {...register("password", {
+                      required: "password is required",
                       pattern: {
                         value:
                           /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/gm,
