@@ -10,14 +10,14 @@ import {
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { selectItems } from "../cart/cartSlice";
-import { selectLoggedInUser } from "../auth/authSlice";
+import { selectUserInfo } from "../user/userSlice";
 
 
 const navigation = [
-  { name: "Products", link: "/", user: true },
-  { name: "Products", link: "/", admin: true },
-  { name: "admin", link: "/admin", admin: true },
-  { name: "orders", link: "/admin/orders", admin: true },
+  { name: "Products", link: "/", user: true,role:'user' },
+  { name: "Products", link: "/", admin: true,role:'admin' },
+  { name: "admin", link: "/admin", admin: true,role:'admin' },
+  { name: "orders", link: "/admin/orders", admin: true,role:'admin' },
 ];
 const userNavigation = [
   { name: "My Profile", link: "/profile" },
@@ -33,11 +33,11 @@ function NavBar({ children }) {
 
   const items = useSelector(selectItems)
   const totalItems = items.reduce((tItem, item) => item.quantity + tItem, 0);
-
-  const user=useSelector(selectLoggedInUser);
+  const userInfo=useSelector(selectUserInfo);
 
   return (
-    <div className="min-h-full">
+    <>
+  {userInfo &&  <div className="min-h-full">
       <Disclosure as="nav" className="bg-gray-800">
         {({ open }) => (
           <>
@@ -56,7 +56,7 @@ function NavBar({ children }) {
                   <div className="hidden md:block">
                     <div className="ml-10 flex items-baseline space-x-4">
                       {navigation.map((item) => (
-                       item[user.role]? <Link
+                       item.role === userInfo.role ? <Link
                           key={item.name}
                           to={item.link}
                           className={classNames(
@@ -68,7 +68,7 @@ function NavBar({ children }) {
                           aria-current={item.current ? "page" : undefined}
                         >
                           {item.name}
-                        </Link>: null
+                        </Link> : null
                       ))}
                     </div>
                   </div>
@@ -98,7 +98,7 @@ function NavBar({ children }) {
                           <span className="sr-only">Open user menu</span>
                           <img
                             className="h-8 w-8 rounded-full"
-                            src={user.imageUrl}
+                            src={userInfo.imageUrl}
                             alt=""
                           />
                         </Menu.Button>
@@ -171,16 +171,16 @@ function NavBar({ children }) {
                   <div className="flex-shrink-0">
                     <img
                       className="h-10 w-10 rounded-full"
-                      src={user.imageUrl}
+                      src={userInfo.imageUrl}
                       alt=""
                     />
                   </div>
                   <div className="ml-3">
                     <div className="text-base font-medium leading-none text-white">
-                      {user.name}
+                      {userInfo.name}
                     </div>
                     <div className="text-sm font-medium leading-none text-gray-400">
-                      {user.email}
+                      {userInfo.email}
                     </div>
                   </div>
                   <Link to="/cart">
@@ -227,7 +227,8 @@ function NavBar({ children }) {
       <main>
         <div className="mx-auto max-w-7xl py-6 sm:px-6 lg:px-8">{children}</div>
       </main>
-    </div>
+    </div>}
+    </>
   );
 }
 

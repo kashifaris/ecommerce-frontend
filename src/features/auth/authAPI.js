@@ -1,7 +1,7 @@
 // A mock function to mimic making an async request for data
 export function createUser(userData) {
   return new Promise(async (resolve) => {
-    const response = await fetch("http://localhost:8080/users", {
+    const response = await fetch("/auth/signup", {
       method: "POST",
       body: JSON.stringify(userData),
       headers: { "content-type": "application/json" },
@@ -11,16 +11,62 @@ export function createUser(userData) {
   });
 }
 
-export function checkUser(userData) {
+export function loginUser(loginInfo) {
+  return new Promise(async (resolve, reject) => {
+    try{
+    const response = await fetch("/auth/login", {
+      method: "POST",
+      body: JSON.stringify(loginInfo),
+      headers: { "content-type": "application/json" },
+    });
+    if(response.ok){
+      const data = await response.json();
+        resolve({data})
+    }
+    else
+    {
+      const err = await response.json();
+      reject(err)
+    }
+
+  } catch(err){
+    reject(err)
+  }
+
+})
+}
+
+export function checkAuth() {
+  return new Promise(async (resolve, reject) => {
+    try{
+    const response = await fetch("/auth/check");
+    if(response.ok){
+      const data = await response.json();
+        resolve({data})
+    }
+    else
+    {
+      const err = await response.json();
+      reject(err)
+    }
+
+  } catch(err){
+    reject(err)
+  }
+
+})
+}
+
+export function checkUserf(userData) {
   return new Promise(async (resolve, reject) => {
     const email = userData.email;
     const password = userData.password;
-    const response = await fetch("http://localhost:8080/users?email=" + email);
+    const response = await fetch("/users?email=" + email);
     const data = await response.json();
     console.log("login data", data[0]);
     if (data.length) {
       if (password === data[0].password) {
-        console.log("password matched",password,data[0].password);
+        console.log("password matched", password, data[0].password);
         resolve({ data: data[0] });
       } else {
         console.log("password matched");
@@ -36,9 +82,7 @@ export function checkUser(userData) {
 export function logout(user) {
   return new Promise(async (resolve) => {
     //TODO for BackEnd
-    console.log('loggedOut')
+    console.log("loggedOut");
     resolve({ user });
   });
 }
-
-

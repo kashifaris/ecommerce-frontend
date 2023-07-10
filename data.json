@@ -2478,7 +2478,6 @@
         }
       ],
       "totalAmount": 1798,
-      "totalItems": 2,
       "user": {
         "email": "test@gmail.com",
         "password": "Test@123",
@@ -3247,6 +3246,71 @@
       },
       "orderStatus": "dispatched",
       "id": 13
+    },
+    {
+      "items": [
+        {
+          "title": "FREE FIRE T Shirt",
+          "description": "quality and professional print - It doesn't just look high quality, it is high quality.",
+          "price": 10,
+          "discountPercentage": 14.72,
+          "rating": 4.52,
+          "stock": 128,
+          "brand": "FREE FIRE",
+          "category": "mens-shirts",
+          "thumbnail": "https://i.dummyjson.com/data/products/52/thumbnail.jpg",
+          "images": [
+            "https://i.dummyjson.com/data/products/52/1.png",
+            "https://i.dummyjson.com/data/products/52/2.png",
+            "https://i.dummyjson.com/data/products/52/3.jpg",
+            "https://i.dummyjson.com/data/products/52/4.jpg",
+            "https://i.dummyjson.com/data/products/52/thumbnail.jpg"
+          ],
+          "quantity": 2,
+          "user": 1,
+          "id": 1
+        }
+      ],
+      "totalAmount": 18,
+      "totalItems": 2,
+      "user": {
+        "email": "test@gmail.com",
+        "password": "Test@123",
+        "addresses": [
+          {
+            "name": "Kashif",
+            "email": "kgnkashif8@gmail.com",
+            "phone": "88645821651",
+            "city": "Indore",
+            "state": "Madhya Pradesh",
+            "pincode": "452001",
+            "street": "Behind MY CRP Line"
+          },
+          {
+            "name": "Jonathan",
+            "email": "mokashn21@gmail.com",
+            "phone": "40005021",
+            "street": "400 loss gross",
+            "city": "la",
+            "state": "Madhya Pradesh",
+            "pincode": "452001"
+          }
+        ],
+        "role": "user",
+        "id": 1
+      },
+      "paymentMethod": "cash",
+      "selectedAddress": {
+        "name": "Kashif",
+        "email": "kgnkashif8@gmail.com",
+        "phone": "88645821651",
+        "city": "Indore",
+        "state": "Madhya Pradesh",
+        "pincode": "452001",
+        "street": "Behind MY CRP Line"
+      },
+      "orderStatus": "pending",
+      "id": 14
     }
   ]
 }

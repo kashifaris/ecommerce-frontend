@@ -73,12 +73,17 @@ export default function AdminAddProductForm() {
         product.rating = 0;
         console.log(product);
         if (params.id) {
+          console.log('inside if') 
           product.id = params.id;
           product.rating = selectedProduct.rating;
           dispatch(updateProductAsync(product));
           reset()
-        } else dispatch(AddProductAsync(product));
+        } 
+        else{
+          console.log('inside else') 
+          dispatch(AddProductAsync(product));
         reset()
+        }
       })}
     >
       <div className="space-y-12 bg-white p-12">

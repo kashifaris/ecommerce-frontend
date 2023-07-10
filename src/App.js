@@ -4,30 +4,31 @@ import Home from "./pages/Home";
 import LoginPage from "./pages/LoginPage";
 import SignupPage from "./pages/SignupPage";
 import Checkout from "./pages/Checkout";
-import {
-  createBrowserRouter,
-  RouterProvider,
-  Route,
-} from "react-router-dom";
+import { createBrowserRouter, RouterProvider, Route } from "react-router-dom";
 import CartPage from "./pages/CartPage";
 import ProductDetailPage from "./pages/ProductDetailPage";
 import Protected from "./features/auth/components/protected";
 import { useDispatch, useSelector } from "react-redux";
-import { selectLoggedInUser } from "./features/auth/authSlice";
+import {
+  checkAuthAsync,
+  selectCheckedUser,
+  selectLoggedInUser,
+} from "./features/auth/authSlice";
 import { fetchItemsByUserIdAsync } from "./features/cart/cartSlice";
 import PageNotFound from "./pages/404";
-import OrderSuccess from './pages/OrderSuccess'
+import OrderSuccess from "./pages/OrderSuccess";
 import UserOrdersPage from "./pages/UserOrdersPage";
-import UserProfilePage from './pages/UserProfilePage'
+import UserProfilePage from "./pages/UserProfilePage";
 import { fetchLoggedInUserAsync } from "./features/user/userSlice";
 import Logout from "./features/auth/components/Logout";
 import { ForgetPassword } from "./features/auth/components/ForgetPassword";
 import ProtectedAdmin from "./features/auth/components/protectedAdmin";
-import AdminHomePage from'./pages/AdminHomePage'
+import AdminHomePage from "./pages/AdminHomePage";
 import AdminProductDetailPage from "./pages/AdminProductDetailPage";
 import AdminAddProductForm from "./features/admin/components/AdminAddProductForm";
 import AdminAddProductFormPage from "./pages/AdminAddProductPage";
 import AdminOrdersPage from "./pages/AdminOrdersPage";
+import StripeCheckout from'./pages/StripeCheckout'
 
 const router = createBrowserRouter([
   {
@@ -135,26 +136,38 @@ const router = createBrowserRouter([
     ),
   },
   {
+    path: "/stripe-checkout",
+    element: (
+      <ProtectedAdmin>
+        <StripeCheckout></StripeCheckout>
+      </ProtectedAdmin>
+    ),
+  },
+  {
     path: "*",
     element: <PageNotFound></PageNotFound>,
   },
 ]);
 
 function App() {
-  const dispatch= useDispatch();
-  const user= useSelector(selectLoggedInUser);
+  const dispatch = useDispatch();
+  const user = useSelector(selectLoggedInUser);
+  const checkedUser = useSelector(selectCheckedUser);
 
-  useEffect(()=>{
-    if(user){
-    dispatch(fetchItemsByUserIdAsync(user.id))
-    dispatch(fetchLoggedInUserAsync(user.id))
-
+  useEffect(() => {
+    dispatch(checkAuthAsync());
+  }, [dispatch]);
+  
+  useEffect(() => {
+    if (user) {
+      dispatch(fetchItemsByUserIdAsync());
+      dispatch(fetchLoggedInUserAsync());
     }
-  },[dispatch,user])
+  }, [dispatch, user]);
 
   return (
     <div className="App">
-      <RouterProvider router={router} />
+      {checkedUser && <RouterProvider router={router} />}{" "}
     </div>
   );
 }

@@ -15,14 +15,16 @@ import {
   PencilIcon,
 } from "@heroicons/react/24/outline";
 import { ITEMS_PER_PAGE } from "../../../app/const";
+import { selectCheckedUser } from "../../auth/authSlice";
 
 function AdminOrders() {
   const [page, setPage] = useState(1);
   const dispatch = useDispatch();
-  const ordres = useSelector(selectAllOrders);
+  const orders = useSelector(selectAllOrders);
   const totalOrders = useSelector(selectTotalOrders);
   const [editableOrderId, setEditableOrderId] = useState(-1);
   const [sort, setSort] = useState({});
+  const checkedUser= useSelector(selectCheckedUser)
 
   const handleEdit = (order) => {
     console.log("handle edit");
@@ -71,8 +73,8 @@ function AdminOrders() {
   }, [dispatch, page, sort]);
 
   return (
-    <>
-      <div className="overflow-x-auto mt-0 pt-0">
+   <>
+      {checkedUser && <div className="overflow-x-auto mt-0 pt-0">
         <div className="min-w-screen min-h-scree flex items-center justify-center bg-gray-100 font-sans overflow-hidden">
           <div className="w-full">
             <div className="bg-white shadow-md rounded my-6">
@@ -101,12 +103,12 @@ function AdminOrders() {
                       className="py-3 px-6 text-center cursor-pointer"
                       onClick={(e) =>
                         handleSort({
-                          sort: "id",
+                          sort: "totalAmount",
                           order: sort._order === "asc" ? "desc" : "asc",
                         })
                       }
                     >
-                      {sort._sort === "id" &&
+                      {sort._sort === "totalAmount" &&
                         (sort._order === "asc" ? (
                           <ArrowUpIcon className="w-4 h-4 inline"></ArrowUpIcon>
                         ) : (
@@ -120,8 +122,9 @@ function AdminOrders() {
                   </tr>
                 </thead>
                 <tbody className="text-gray-600 text-sm font-light">
-                  {ordres.map((order) => (
-                    <tr className="border-b border-gray-200 hover:bg-gray-100">
+                  {orders.map((order) => (
+                    
+                    <tr  key={order.id} className="border-b border-gray-200 hover:bg-gray-100">
                       <td className="py-3 px-6 text-left whitespace-nowrap">
                         <div className="flex items-center">
                           <div className="mr-2"></div>
@@ -129,18 +132,20 @@ function AdminOrders() {
                         </div>
                       </td>
                       <td className="py-3 px-6 text-left">
-                        <div className="flex items-center">
+                      {order.items.map((item) => (
+                        <div key= {item.id} className="flex items-center">
                           <div className="mr-2">
-                            {order.items.map((item) => (
+                            
                               <img
-                              alt={item.title}
+                              alt={item.product.title}
                                 className="w-8 h-8 mt-1 rounded-full"
-                                src={item.thumbnail}
+                                src={item.product.thumbnail}
                               />
-                            ))}
+                             
                           </div>
-                          <span>{order.title}</span>
+                          <span>{item.product.title}</span>  
                         </div>
+                       ))}
                       </td>
                       <td className="py-3 px-6 text-center">
                         <div className="flex items-center justify-center">
@@ -199,6 +204,7 @@ function AdminOrders() {
                         </div>
                       </td>
                     </tr>
+                    
                   ))}
                 </tbody>
               </table>
@@ -210,7 +216,7 @@ function AdminOrders() {
           totalItems={totalOrders}
           page={page}
         ></Pagination>
-      </div>
+      </div>}
     </>
   );
 }

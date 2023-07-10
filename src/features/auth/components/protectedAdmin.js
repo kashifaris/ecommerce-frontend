@@ -1,14 +1,17 @@
 import { useSelector} from "react-redux/es/hooks/useSelector";
 import { Navigate } from "react-router-dom";
-import { selectLoggedInUser } from "../authSlice";
+import { selectCheckedUser, selectLoggedInUser } from "../authSlice";
+import { selectUserInfo } from "../../user/userSlice";
 
 function ProtectedAdmin ({children}) {
     const user = useSelector(selectLoggedInUser)
-
-    if(!user){
+    const userInfo = useSelector(selectUserInfo)
+    const checkedUser = useSelector(selectCheckedUser)
+    console.log(userInfo)
+   if(!user){
         return <Navigate to='/login'></Navigate>
     }
-    if(user.role!=='admin'){
+    if(userInfo.role!=='admin'){
         return <Navigate to='/'></Navigate>
     }
     return children;

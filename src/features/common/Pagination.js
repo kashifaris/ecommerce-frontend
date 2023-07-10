@@ -53,7 +53,7 @@ import { ITEMS_PER_PAGE } from "../../app/const";
                 {Array.from({
                   length: totalpage,
                 }).map((elm, ind) => (
-                  <div
+                  <div key={ind}
                     onClick={(e) => handlePage(ind + 1)}
                     aria-current="page"
                     className={`relative z-10 inline-flex items-center 
