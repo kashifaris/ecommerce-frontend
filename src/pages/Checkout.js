@@ -95,9 +95,9 @@ function Checkout() {
         ></Navigate>
       )}
 
-      {currentOrder && currentOrder.paymentMethod !=='cash' &&(
+      {currentOrder && currentOrder.paymentMethod ==='card' &&(
         <Navigate
-          to={`/stripe-checkout/`}
+          to={`/stripe-checkout`}
           replace={true}
         ></Navigate>
       )}
@@ -385,7 +385,7 @@ function Checkout() {
                             htmlFor="card"
                             className="block text-sm font-medium leading-6 text-gray-900"
                           >
-                            Card Payment
+                            Card
                           </label>
                         </div>
                         <div className="flex items-center gap-x-3">

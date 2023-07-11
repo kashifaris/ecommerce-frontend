@@ -111,7 +111,7 @@ export function Cart() {
           </p>
           <div className="mt-6">
             <Link
-              to="/checkout"
+              to={items.length ? `/checkout`: '/'}
               className="flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700"
             >
               Checkout

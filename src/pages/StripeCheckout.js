@@ -21,9 +21,6 @@ export default function App() {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ totalAmount:currentOrder.totalAmount }),
-      meta:{
-        order_id: currentOrder.id
-      }
     })
       .then((res) => res.json())
       .then((data) => setClientSecret(data.clientSecret));

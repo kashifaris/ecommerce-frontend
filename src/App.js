@@ -29,6 +29,7 @@ import AdminAddProductForm from "./features/admin/components/AdminAddProductForm
 import AdminAddProductFormPage from "./pages/AdminAddProductPage";
 import AdminOrdersPage from "./pages/AdminOrdersPage";
 import StripeCheckout from'./pages/StripeCheckout'
+import { resetOrder } from "./features/order/OrderSlice";
 
 const router = createBrowserRouter([
   {
@@ -154,9 +155,14 @@ function App() {
   const user = useSelector(selectLoggedInUser);
   const checkedUser = useSelector(selectCheckedUser);
 
+
   useEffect(() => {
     dispatch(checkAuthAsync());
   }, [dispatch]);
+
+  useEffect(()=>{
+    dispatch(resetOrder())
+  },[])
   
   useEffect(() => {
     if (user) {

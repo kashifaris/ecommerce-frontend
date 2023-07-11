@@ -24,7 +24,7 @@ export const loginUserAsync = createAsyncThunk(
       const response = await loginUser(loginInfo);
       return response.data;
     } catch (error) {
-      console.log(error);
+      console.log("login slice",error);
       return rejectWithValue(error);
     }
   }

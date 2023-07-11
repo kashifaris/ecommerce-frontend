@@ -12,14 +12,14 @@ export function Login() {
     watch,
     formState: { errors },
   } = useForm();
-  console.log(errors);
+
   const error = useSelector(selectErrorLoggedInUser);
   const user = useSelector(selectLoggedInUser);
 
   return (
     <div>
       <div>
-        {user && <Navigate to="/"></Navigate>} 
+        {user && <Navigate to="/" replace={true}></Navigate>} 
         <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
           <div className="sm:mx-auto sm:w-full sm:max-w-sm">
             <img
@@ -99,7 +99,7 @@ export function Login() {
                   )}
                 </div>
               </div>
-              {error && <p className="text-red-500">{error || error.message}</p>}
+              {error && <p className="text-red-500">"invalid credentials"</p>}
 
               <div>
                 <button

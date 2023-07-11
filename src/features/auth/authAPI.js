@@ -26,11 +26,11 @@ export function loginUser(loginInfo) {
     else
     {
       const err = await response.json();
-      reject(err)
+      reject({error:err})
     }
 
   } catch(err){
-    reject(err)
+    reject({error:err})
   }
 
 })
@@ -82,6 +82,7 @@ export function checkUserf(userData) {
 export function logout(user) {
   return new Promise(async (resolve) => {
     //TODO for BackEnd
+    
     console.log("loggedOut");
     resolve({ user });
   });

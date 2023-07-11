@@ -4,7 +4,7 @@ import { selectLoggedInUser } from "../authSlice";
 
 function Protected ({children}) {
     const user = useSelector(selectLoggedInUser)
-
+    console.log("indise protected User",user)
     if(!user){
         return <Navigate to='/login'></Navigate>
     }
