@@ -141,7 +141,7 @@ export const productSlice = createSlice({
   },
 });
 
-export const { clearSelectedProduct} = productSlice.actions;
+export const { clearSelectedProduct} = productSlice.actions; //action for normal reducer  
 
 export const selectAllProducts = (state) => state.product.products;
 export const selectTotalItems = (state) => state.product.totalItems;

@@ -10,29 +10,46 @@ export function Login() {
     register,
     handleSubmit,
     watch,
+    setValue,
     formState: { errors },
   } = useForm();
 
   const error = useSelector(selectErrorLoggedInUser);
   const user = useSelector(selectLoggedInUser);
 
+  // useEffect(()=>{
+  //   setValue("id","test@gmail.com")
+  //   setValue("pass","Test@123")
+  // })
+
   return (
-    <div>
-      <div>
+    <div class="bg-gradient-to-r from-purple-600 to-blue-500">
+
+<div class="flex font-poppins items-center justify-center">
+    <div class="h-screen w-screen flex justify-center items-center dark:bg-gray-900">
+    <div class="grid gap-8">
+      <div
+        id="back-div"
+        class="bg-gradient-to-r from-blue-400 to-purple-500 rounded-[26px] m-4"
+      >
+
+
+
+<div>
         {user && <Navigate to="/" replace={true}></Navigate>} 
         <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
           <div className="sm:mx-auto sm:w-full sm:max-w-sm">
             <img
-              className="mx-auto h-10 w-auto"
-              src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
+              className="mx-auto h-14 w-auto"
+              src="https://www.freeiconspng.com/uploads/shopping-cart-icon-19.png"
               alt="Your Company"
             />
-            <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
+            <h2 className="mt-8 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
               Sign in to your account
             </h2>
           </div>
 
-          <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
+<div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm ">
             <form
               noValidate
               className="space-y-6"
@@ -61,6 +78,7 @@ export function Login() {
                       },
                     })}
                     type="email"
+                    defaultValue="test@gmail.com"
                     className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                   />
                   {errors.email && (
@@ -79,7 +97,7 @@ export function Login() {
                   </label>
                   <div className="text-sm">
                     <Link to="/forget-password"
-                      className="font-semibold text-indigo-600 hover:text-indigo-500"
+                      className="font-semibold text-indigo-900 hover:text-indigo-600"
                     >
                       Forgot password?
                     </Link>
@@ -92,6 +110,7 @@ export function Login() {
                       required: "password is required",
                     })}
                     type="password"
+                    defaultValue="Test@123"
                     className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                   />
                   {errors.password && (
@@ -111,18 +130,39 @@ export function Login() {
               </div>
             </form>
 
-            <p className="mt-10 text-center text-sm text-gray-500">
+            <p className="mt-10 text-center text-sm text-gray-200">
               Not a member?{" "}
               <Link
                 to="/signup"
-                className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500"
+                className="font-semibold leading-6 text-indigo-900 hover:text-indigo-600"
               >
                 Create a new account
               </Link>
             </p>
           </div>
+
+
+
         </div>
       </div>
+
+
+
+
+      </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+
+
     </div>
   );
 }

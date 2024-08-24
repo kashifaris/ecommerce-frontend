@@ -9,8 +9,10 @@ function Logout() {
     const dispatch= useDispatch();
     useEffect(()=>{
         dispatch(logoutAsync(user))
-    })
+    },[dispatch])
+
     return ( <>
+    console.log(user);
     <div>Signing Out...</div>
     {!user && <Navigate to="/login"></Navigate>}
     </> );

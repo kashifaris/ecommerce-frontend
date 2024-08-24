@@ -15,14 +15,28 @@ export function SignUp() {
   const user = useSelector(selectLoggedInUser);
   console.log(user);
   return (
-    <div>
-      <div>
+    <div class=" h-screen bg-gradient-to-r from-purple-600 to-blue-500">
+
+
+
+
+<div class="flex font-poppins items-center justify-center">
+    <div class="h-screen w-screen flex justify-center items-center dark:bg-gray-900">
+    <div class="grid gap-8">
+      <div
+        id="back-div"
+        class="bg-gradient-to-r from-blue-400 to-purple-500 rounded-[26px] m-4"
+      >
+
+
+
+<div >
         {user && <Navigate to="/"></Navigate>}
         <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
           <div className="sm:mx-auto sm:w-full sm:max-w-sm">
             <img
               className="mx-auto h-10 w-auto"
-              src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
+              src="https://www.freeiconspng.com/uploads/shopping-cart-icon-19.png"
               alt="Your Company"
             />
             <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
@@ -141,11 +155,11 @@ export function SignUp() {
               </div>
             </form>
 
-            <p className="mt-10 text-center text-sm text-gray-500">
+            <p className="mt-10 text-center text-sm text-gray-200">
               Already a member?{" "}
               <Link
                 to="/login"
-                className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500"
+                className="font-semibold leading-6 text-indigo-900 hover:text-indigo-600"
               >
                 Login
               </Link>
@@ -153,6 +167,22 @@ export function SignUp() {
           </div>
         </div>
       </div>
+
+      
+      </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+
+
     </div>
   );
 }
